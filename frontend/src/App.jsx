@@ -5,7 +5,9 @@ import { Toaster } from 'react-hot-toast'
 import { HomePage, ProblemsPage } from './pages'
 
 const App = () => {
-  const { isSignedIn } = useUser()
+  const { isSignedIn, isLoaded } = useUser()
+
+  if (!isLoaded) return null;
 
   return (
     <>
