@@ -5,14 +5,17 @@ import { Toaster } from 'react-hot-toast'
 import { HomePage, ProblemsPage, DashboardPage } from './pages'
 
 const App = () => {
-  const { isSignedIn } = useUser()
+  const { isSignedIn, isLoaded } = useUser()
+
+  if (!isLoaded) return null;
 
   return (
     <>
       <Routes>
-        <Route path='/' element={!isSignedIn ? <HomePage /> : <Navigate to={'/dashboard'} />} />
-        <Route path='/' element={isSignedIn ? <DashboardPage /> : <Navigate to={'/'} />} />
-        <Route path='/problems' element={isSignedIn ? <ProblemsPage /> : <Navigate to={'/'} />} />
+        <Route path="/" element={!isSignedIn ? <HomePage /> : <Navigate to={"/dashboard"} />} />
+        <Route path="/dashboard" element={isSignedIn ? <DashboardPage /> : <Navigate to={"/"} />} />
+
+        <Route path="/problems" element={isSignedIn ? <ProblemsPage /> : <Navigate to={"/"} />} />
       </Routes>
 
       <Toaster />
