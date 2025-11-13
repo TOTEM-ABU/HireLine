@@ -346,6 +346,346 @@ print(maxArea([1,1]))  # Expected: 1`,
       java: "49\n1",
     },
   },
+
+  // YANGI EASY PROBLEM
+  "merge-two-sorted-lists": {
+    id: "merge-two-sorted-lists",
+    title: "Merge Two Sorted Lists",
+    difficulty: "Easy",
+    category: "Linked List • Recursion",
+    description: {
+      text: "You are given the heads of two sorted linked lists list1 and list2. Merge the two lists into one sorted linked list and return the head of the merged list.",
+      notes: [
+        "The merged list should be made by splicing together the nodes of the first two lists.",
+      ],
+    },
+    examples: [
+      {
+        input: "list1 = [1,2,4], list2 = [1,3,4]",
+        output: "[1,1,2,3,4,4]",
+      },
+      {
+        input: "list1 = [], list2 = []",
+        output: "[]",
+      },
+      {
+        input: "list1 = [], list2 = [0]",
+        output: "[0]",
+      },
+    ],
+    constraints: [
+      "The number of nodes in both lists is in the range [0, 50]",
+      "-100 ≤ Node.val ≤ 100",
+      "Both list1 and list2 are sorted in non-decreasing order",
+    ],
+    starterCode: {
+      javascript: `function ListNode(val, next) {
+  this.val = (val === undefined ? 0 : val);
+  this.next = (next === undefined ? null : next);
+}
+
+function mergeTwoLists(list1, list2) {
+  // Write your solution here
+  
+}
+
+// Helper function to convert array to linked list
+function arrayToList(arr) {
+  let dummy = new ListNode();
+  let current = dummy;
+  for (let num of arr) {
+    current.next = new ListNode(num);
+    current = current.next;
+  }
+  return dummy.next;
+}
+
+// Helper function to convert linked list to array
+function listToArray(head) {
+  let result = [];
+  while (head) {
+    result.push(head.val);
+    head = head.next;
+  }
+  return result;
+}
+
+// Test cases
+console.log(listToArray(mergeTwoLists(arrayToList([1,2,4]), arrayToList([1,3,4])))); // Expected: [1,1,2,3,4,4]
+console.log(listToArray(mergeTwoLists(arrayToList([]), arrayToList([])))); // Expected: []
+console.log(listToArray(mergeTwoLists(arrayToList([]), arrayToList([0])))); // Expected: [0]`,
+      python: `class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+def mergeTwoLists(list1, list2):
+    # Write your solution here
+    pass
+
+# Helper function to convert array to linked list
+def array_to_list(arr):
+    dummy = ListNode()
+    current = dummy
+    for num in arr:
+        current.next = ListNode(num)
+        current = current.next
+    return dummy.next
+
+# Helper function to convert linked list to array
+def list_to_array(head):
+    result = []
+    while head:
+        result.append(head.val)
+        head = head.next
+    return result
+
+# Test cases
+print(list_to_array(mergeTwoLists(array_to_list([1,2,4]), array_to_list([1,3,4]))))  # Expected: [1,1,2,3,4,4]
+print(list_to_array(mergeTwoLists(array_to_list([]), array_to_list([]))))  # Expected: []
+print(list_to_array(mergeTwoLists(array_to_list([]), array_to_list([0]))))  # Expected: [0]`,
+      java: `class ListNode {
+    int val;
+    ListNode next;
+    ListNode() {}
+    ListNode(int val) { this.val = val; }
+    ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+}
+
+class Solution {
+    public static ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+        // Write your solution here
+        
+        return null;
+    }
+    
+    // Helper function to convert array to linked list
+    public static ListNode arrayToList(int[] arr) {
+        ListNode dummy = new ListNode();
+        ListNode current = dummy;
+        for (int num : arr) {
+            current.next = new ListNode(num);
+            current = current.next;
+        }
+        return dummy.next;
+    }
+    
+    // Helper function to convert linked list to array
+    public static int[] listToArray(ListNode head) {
+        List<Integer> result = new ArrayList<>();
+        while (head != null) {
+            result.add(head.val);
+            head = head.next;
+        }
+        return result.stream().mapToInt(i -> i).toArray();
+    }
+    
+    public static void main(String[] args) {
+        System.out.println(Arrays.toString(listToArray(mergeTwoLists(arrayToList(new int[]{1,2,4}), arrayToList(new int[]{1,3,4}))))); // Expected: [1,1,2,3,4,4]
+        System.out.println(Arrays.toString(listToArray(mergeTwoLists(arrayToList(new int[]{}), arrayToList(new int[]{}))))); // Expected: []
+        System.out.println(Arrays.toString(listToArray(mergeTwoLists(arrayToList(new int[]{}), arrayToList(new int[]{0}))))); // Expected: [0]
+    }
+}`,
+    },
+    expectedOutput: {
+      javascript: "[1,1,2,3,4,4]\n[]\n[0]",
+      python: "[1, 1, 2, 3, 4, 4]\n[]\n[0]",
+      java: "[1, 1, 2, 3, 4, 4]\n[]\n[0]",
+    },
+  },
+
+  // YANGI MEDIUM PROBLEM
+  "longest-palindromic-substring": {
+    id: "longest-palindromic-substring",
+    title: "Longest Palindromic Substring",
+    difficulty: "Medium",
+    category: "String • Dynamic Programming",
+    description: {
+      text: "Given a string s, return the longest palindromic substring in s.",
+      notes: [
+        "A string is palindromic if it reads the same forward and backward.",
+      ],
+    },
+    examples: [
+      {
+        input: 's = "babad"',
+        output: '"bab"',
+        explanation: '"aba" is also a valid answer.',
+      },
+      {
+        input: 's = "cbbd"',
+        output: '"bb"',
+      },
+    ],
+    constraints: [
+      "1 ≤ s.length ≤ 1000",
+      "s consist of only digits and English letters",
+    ],
+    starterCode: {
+      javascript: `function longestPalindrome(s) {
+  // Write your solution here
+  
+}
+
+// Test cases
+console.log(longestPalindrome("babad")); // Expected: "bab" or "aba"
+console.log(longestPalindrome("cbbd")); // Expected: "bb"`,
+      python: `def longestPalindrome(s):
+    # Write your solution here
+    pass
+
+# Test cases
+print(longestPalindrome("babad"))  # Expected: "bab" or "aba"
+print(longestPalindrome("cbbd"))  # Expected: "bb"`,
+      java: `class Solution {
+    public static String longestPalindrome(String s) {
+        // Write your solution here
+        
+        return "";
+    }
+    
+    public static void main(String[] args) {
+        System.out.println(longestPalindrome("babad")); // Expected: "bab" or "aba"
+        System.out.println(longestPalindrome("cbbd")); // Expected: "bb"
+    }
+}`,
+    },
+    expectedOutput: {
+      javascript: "bab\nbb",
+      python: "bab\nbb",
+      java: "bab\nbb",
+    },
+  },
+
+  // YANGI HARD PROBLEM 1
+  "median-of-two-sorted-arrays": {
+    id: "median-of-two-sorted-arrays",
+    title: "Median of Two Sorted Arrays",
+    difficulty: "Hard",
+    category: "Array • Binary Search",
+    description: {
+      text: "Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays.",
+      notes: ["The overall run time complexity should be O(log (m+n))."],
+    },
+    examples: [
+      {
+        input: "nums1 = [1,3], nums2 = [2]",
+        output: "2.00000",
+        explanation: "merged array = [1,2,3] and median is 2.",
+      },
+      {
+        input: "nums1 = [1,2], nums2 = [3,4]",
+        output: "2.50000",
+        explanation:
+          "merged array = [1,2,3,4] and median is (2 + 3) / 2 = 2.5.",
+      },
+    ],
+    constraints: [
+      "nums1.length == m",
+      "nums2.length == n",
+      "0 ≤ m ≤ 1000",
+      "0 ≤ n ≤ 1000",
+      "1 ≤ m + n ≤ 2000",
+      "-10⁶ ≤ nums1[i], nums2[i] ≤ 10⁶",
+    ],
+    starterCode: {
+      javascript: `function findMedianSortedArrays(nums1, nums2) {
+  // Write your solution here
+  
+}
+
+// Test cases
+console.log(findMedianSortedArrays([1,3], [2])); // Expected: 2.00000
+console.log(findMedianSortedArrays([1,2], [3,4])); // Expected: 2.50000`,
+      python: `def findMedianSortedArrays(nums1, nums2):
+    # Write your solution here
+    pass
+
+# Test cases
+print(findMedianSortedArrays([1,3], [2]))  # Expected: 2.00000
+print(findMedianSortedArrays([1,2], [3,4]))  # Expected: 2.50000`,
+      java: `class Solution {
+    public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        // Write your solution here
+        
+        return 0.0;
+    }
+    
+    public static void main(String[] args) {
+        System.out.println(findMedianSortedArrays(new int[]{1,3}, new int[]{2})); // Expected: 2.00000
+        System.out.println(findMedianSortedArrays(new int[]{1,2}, new int[]{3,4})); // Expected: 2.50000
+    }
+}`,
+    },
+    expectedOutput: {
+      javascript: "2\n2.5",
+      python: "2.0\n2.5",
+      java: "2.0\n2.5",
+    },
+  },
+
+  // YANGI HARD PROBLEM 2
+  "trapping-rain-water": {
+    id: "trapping-rain-water",
+    title: "Trapping Rain Water",
+    difficulty: "Hard",
+    category: "Array • Two Pointers • Dynamic Programming",
+    description: {
+      text: "Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it can trap after raining.",
+      notes: [],
+    },
+    examples: [
+      {
+        input: "height = [0,1,0,2,1,0,1,3,2,1,2,1]",
+        output: "6",
+        explanation:
+          "The above elevation map is represented by array [0,1,0,2,1,0,1,3,2,1,2,1]. In this case, 6 units of rain water are being trapped.",
+      },
+      {
+        input: "height = [4,2,0,3,2,5]",
+        output: "9",
+      },
+    ],
+    constraints: [
+      "n == height.length",
+      "1 ≤ n ≤ 2 * 10⁴",
+      "0 ≤ height[i] ≤ 10⁵",
+    ],
+    starterCode: {
+      javascript: `function trap(height) {
+  // Write your solution here
+  
+}
+
+// Test cases
+console.log(trap([0,1,0,2,1,0,1,3,2,1,2,1])); // Expected: 6
+console.log(trap([4,2,0,3,2,5])); // Expected: 9`,
+      python: `def trap(height):
+    # Write your solution here
+    pass
+
+# Test cases
+print(trap([0,1,0,2,1,0,1,3,2,1,2,1]))  # Expected: 6
+print(trap([4,2,0,3,2,5]))  # Expected: 9`,
+      java: `class Solution {
+    public static int trap(int[] height) {
+        // Write your solution here
+        
+        return 0;
+    }
+    
+    public static void main(String[] args) {
+        System.out.println(trap(new int[]{0,1,0,2,1,0,1,3,2,1,2,1})); // Expected: 6
+        System.out.println(trap(new int[]{4,2,0,3,2,5})); // Expected: 9
+    }
+}`,
+    },
+    expectedOutput: {
+      javascript: "6\n9",
+      python: "6\n9",
+      java: "6\n9",
+    },
+  },
 };
 
 export const LANGUAGE_CONFIG = {
