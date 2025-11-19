@@ -1,4 +1,4 @@
-import { streamClient, chatClient } from "../lib/stream.js";
+import { chatClient, streamClient } from "../lib/stream.js";
 import Session from "../models/Session.js";
 
 export async function createSession(req, res) {
@@ -10,14 +10,14 @@ export async function createSession(req, res) {
     if (!problem || !difficulty) {
       return res
         .status(400)
-        .json({ message: "Problem and difficulty are required!" });
+        .json({ message: "Problem and difficulty are required" });
     }
 
     const callId = `session_${Date.now()}_${Math.random()
       .toString(36)
       .substring(7)}`;
 
-    const session = new Session({
+    const session = await Session.create({
       problem,
       difficulty,
       host: userId,
@@ -84,8 +84,8 @@ export async function getSessionById(req, res) {
     const { id } = req.params;
 
     const session = await Session.findById(id)
-      .populate("host", "name profileImage email clerkId")
-      .populate("participant", "name profileImage email clerkId");
+      .populate("host", "name email profileImage clerkId")
+      .populate("participant", "name email profileImage clerkId");
 
     if (!session) return res.status(404).json({ message: "Session not found" });
 
@@ -119,7 +119,7 @@ export async function joinSession(req, res) {
     }
 
     if (session.participant)
-      return res.status(400).json({ message: "Session is full" });
+      return res.status(409).json({ message: "Session is full" });
 
     session.participant = userId;
     await session.save();
@@ -162,7 +162,7 @@ export async function endSession(req, res) {
     session.status = "completed";
     await session.save();
 
-    res.status(200).json({ message: "Session ended successfully" });
+    res.status(200).json({ session, message: "Session ended successfully" });
   } catch (error) {
     console.log("Error in endSession controller:", error.message);
     res.status(500).json({ message: "Internal Server Error" });

@@ -2,3 +2,8 @@ export { default as Navbar } from "./Navbar.jsx";
 export { default as ProblemDescription } from "./ProblemDescription.jsx";
 export { default as CodeEditorPanel } from "./CodeEditorPanel.jsx";
 export { default as OutputPanel } from "./OutputPanel.jsx";
+export { default as WelcomeSection } from "./WelcomeSection.jsx";
+export { default as StatsCards } from "./StatsCards.jsx";
+export { default as ActiveSessions } from "./ActiveSessions.jsx";
+export { default as RecentSessions } from "./RecentSessions.jsx";
+export { default as CreateSessionModal } from "./CreateSessionModal.jsx";

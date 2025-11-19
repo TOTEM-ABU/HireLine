@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const SessionSchema = new mongoose.Schema(
+const sessionSchema = new mongoose.Schema(
   {
     problem: {
       type: String,
@@ -8,8 +8,8 @@ const SessionSchema = new mongoose.Schema(
     },
     difficulty: {
       type: String,
-      required: true,
       enum: ["easy", "medium", "hard"],
+      required: true,
     },
     host: {
       type: mongoose.Schema.Types.ObjectId,
@@ -34,6 +34,6 @@ const SessionSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const Session = mongoose.model("Session", SessionSchema);
+const Session = mongoose.model("Session", sessionSchema);
 
 export default Session;
